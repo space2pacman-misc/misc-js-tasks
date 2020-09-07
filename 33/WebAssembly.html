@@ -1,0 +1,15 @@
+<script>
+	var squarer;
+
+	function loadWA(file) {
+		return fetch(file)
+			.then(response => response.arrayBuffer())
+			.then(bits => WebAssembly.compile(bits))
+			.then(module => { return new WebAssembly.Instance(module) })
+	}
+
+	loadWA("squarer.wasm").then(instance => {
+		squarer = instance.exports._Z7squareri;
+		console.log("Finished compiling!");
+	})
+</script>

@@ -1,0 +1,53 @@
+<script>
+	var room = {
+		number: 23,
+		occupy: function() {
+			return this.number
+		},
+		toJSON: function() {
+			return this.number
+		}
+	}
+
+	var event = {
+		title: "Conf",
+		data: new Date(),
+		room: room
+	}
+
+	//console.log(JSON.stringify(room))
+
+	console.log(JSON.stringify(event)) // {"title":"Conf","data":"2018-12-03T19:28:14.879Z","room":23}
+
+	var user = {
+		name: "Alex",
+		window: window
+	}
+
+	//console.log(JSON.stringify(user)) // Uncaught TypeError: Converting circular structure to JSON
+
+	console.log(JSON.stringify(user, ["name"])) // {"name":"Alex"}
+
+	var str = JSON.stringify(user, function(key, value) {
+		if(key == "window") {
+			return undefined;
+		}
+
+		return value
+	})
+
+	console.log(str);
+
+	var user01 = {
+		name: "Alex",
+		age: 20,
+		roles: {
+			isAdmin: false,
+			isEditor: true
+		}
+	}
+
+	var strUser01 = JSON.stringify(user01, null, 4);
+
+	console.log(strUser01)
+</script>

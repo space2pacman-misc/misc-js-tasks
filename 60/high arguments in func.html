@@ -1,0 +1,27 @@
+<script>
+	function addMethod(obj, name, fn) {
+		var old = obj[name];
+		var count = 0;
+
+		obj[name] = function() {
+			count++;
+			console.log(count, fn);
+			if(fn.length == arguments.length) {
+				return fn.apply(this, arguments);
+			} else if(typeof old == "function") {
+				return old.apply(this, arguments);
+			}
+		}
+	}
+
+	var ninja = {};
+
+	addMethod(ninja, "whatever", function() { return "one" });
+	addMethod(ninja, "whatever", function(a) { return "two" });
+	addMethod(ninja, "whatever", function(a, b) { return "three" });
+
+	//console.log(ninja)
+	console.log(ninja.whatever())
+	//console.log(ninja.whatever(1))
+	//console.log(ninja.whatever(1,2))
+</script>

@@ -1,0 +1,15 @@
+<script>
+	var User = {
+		name: "Alex",
+		age: 20
+	}
+
+	var vasya = {};
+
+	vasya.__proto__ = User
+
+	vasya.age = 10;
+
+	console.log("User age: " + User.age)
+	console.log("vasya age: " + vasya.age)
+</script>

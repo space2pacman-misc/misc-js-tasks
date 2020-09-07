@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>How check click to element</title>
+</head>
+<body>
+
+<div class="apple">apple</div>
+
+<script>
+	function checkClick(className) {
+		var el = document.querySelector(className);
+
+		el.addEventListener("click", function(e) {
+			var coords = document.elementFromPoint(e.x, e.y);
+
+			checkClick.status = coords == this;
+			console.log(checkClick.status);
+		})
+	}
+
+	checkClick(".apple");
+</script>
+</body>
+</html>

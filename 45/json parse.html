@@ -1,0 +1,15 @@
+<script>
+	var str = '{"title":"Conf", "date":"2014-11-30T12:00:00.000Z"}';
+
+	var event01 = JSON.parse(str);
+	var event02 = JSON.parse(str, (key, value) => {
+		//console.log(key, value);
+		if(key == "date") {
+			return new Date(value)
+		}
+		return value
+	});
+
+	console.log(event01);
+	console.log(event02.date.getFullYear()); // 2014
+</script>

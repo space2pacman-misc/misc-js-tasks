@@ -1,0 +1,13 @@
+<script>
+	Array.prototype.myForEach = function(callback) {
+		for(var i = 0; i < this.length; i++) {
+			callback.call(this[i], i)
+		}
+	}
+
+	var arr = [1,2,3,4,5];
+
+	arr.myForEach(function(i) {
+		console.log(this, i)
+	})
+</script>

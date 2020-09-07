@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello</title>
+</head>
+<body>
+
+<div id="app">
+	<input v-model="message">
+	<div v-if="message == 'Привет'"> И тебе привет </div>
+</div>
+
+<script src="vue.js"></script>
+<script>
+	var app = new Vue({
+		el: "#app",
+		data: {
+			message: null
+		}
+	})	
+</script>
+</body>
+</html>

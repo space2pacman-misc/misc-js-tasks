@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<style>
+.field {
+	width: 500px;
+	height: 500px;
+	border: 1px solid;
+	margin: auto;
+	position: relative;
+}
+
+.horizont {
+	background: green;
+	position: absolute;
+	height: 10px;
+}
+
+.vertical {
+	background: red;
+	position: absolute;
+	width: 10px;
+	height: 100px;
+}
+</style>
+
+<div class="field"></div>
+
+<script>
+	var field = document.querySelector(".field");
+	var width;
+	var sign = 	1;
+	var diff;
+	var sides = {
+		"-1": "right",
+		"1": "left"
+	}
+	var coords = {
+		click: {
+			x: null,
+			y: null,
+		},
+		move: {
+			x: null,
+			y: null
+		}
+	}
+
+	field.addEventListener("mousedown", function(e) {
+		coords.click.x = e.x - this.offsetLeft;
+		coords.click.y = e.y - this.offsetTop;
+		this.appendChild(createLine("horizont"));
+		this.appendChild(createLine("vertical"));
+	})
+
+	field.addEventListener("mousemove", move);
+	field.addEventListener("mouseup", clear);
+
+	function move(e) {
+		var horizont = document.querySelector(".horizont");
+		var vertical = document.querySelector(".vertical");
+		/////////////
+
+		if(horizont) {
+			diff = coords.click.x - coords.move.x;
+			coords.move.x = e.x - this.offsetLeft;
+			width = (coords.move.x - coords.click.x) * sign;
+			sign = getSign(diff);
+			horizont.style.width = (width / 2) + "px";
+			horizont.style.left = "auto";
+			horizont.style.right = "auto";
+			horizont.style[sides[sign]] = (sign == -1 ? this.offsetWidth - coords.click.x : coords.click.x) + "px";
+			///////////////////
+			vertical.style.left = "auto";
+			vertical.style.right = "auto";
+			vertical.style[sides[sign]] = ((sign == -1 ? this.offsetWidth - coords.click.x : coords.click.x) + width / 2) + "px";
+			////////////////////
+		}
+	}
+
+	function createLine(className) {
+		var el = document.createElement("div");
+
+		el.classList.add(className);
+		el.style.left = coords.click.x + "px";
+		el.style.top = (coords.click.y - 5) + "px";
+
+		return el;
+	}
+
+	function clear() {
+		field.innerHTML = "";
+	}
+
+	function getSign(expression) {
+		return Math.sign(expression) == -1 ? 1 : -1;
+	}
+</script>
+</body>
+</html>

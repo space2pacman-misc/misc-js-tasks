@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="app"></div>
+	
+	<template id="home">
+		<h1>Home</h1>
+	</template>
+
+	<template id="gallery">
+		<h1>Gallery</h1>
+	</template>
+
+	<script>
+		var app = document.querySelector(".app");
+		var pages = ["home", "gallery"];
+
+		window.addEventListener("hashchange", handler);
+
+		function handler() {
+			var link = window.location.hash.slice(2);
+			
+			app.innerHTML = "";
+
+			if(pages.includes(link)) {
+				var page = document.querySelector(`#${link}`).content.firstElementChild;
+
+				app.appendChild(page);
+			}
+		}
+	</script>
+</body>
+</html>

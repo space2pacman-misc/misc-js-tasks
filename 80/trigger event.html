@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<div class="apple" onclick="onclickFunction()">Apple</div>
+
+<script src="jquery-3.4.0.js"></script>
+<script>
+	function onclickFunction() {
+		console.log("onclick");
+	}
+
+	document.querySelector(".apple").addEventListener("click", function() {
+		console.log("addEventListener");
+	})
+
+	$(".apple").on("click", function() {
+		console.log("jquery click");
+	})
+
+	$(".apple").bind("click", function() {
+		console.log("jquery bind")
+	})
+
+	$(".apple").trigger("click")
+
+	document.querySelector(".apple").onclick = function() {
+		console.log("change onclick prop")
+	}
+
+	$(".apple").trigger("click")
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<script>
+	function Person(name) {
+		this.name = name;
+	}
+
+	var person = new Person("Alex");
+
+	console.log(person.constructor)
+	console.log(Person.prototype.constructor)
+
+	function Developer(name, skills) {
+		Person.apply(this, arguments);
+		this.skills = skills || [];
+	}
+
+	Developer.prototype = Object.create(Person.prototype)
+	Developer.prototype.constructor = Developer
+
+	var dev01 = new Developer("Bob", ["HTML", "CSS"])
+	console.log(dev01)
+
+	console.log(Object.prototype.toString.call([]))
+</script>

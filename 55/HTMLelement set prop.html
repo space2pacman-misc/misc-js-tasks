@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTMLElement</title>
+</head>
+<body>
+	<div class="apple">apple</div>
+
+	<script>
+		var apple = document.querySelector(".apple");
+
+		HTMLElement.prototype.HTMLtoString = function() {
+			//return this.parentElement.innerHTML.match(/apple/)
+			return "<div class=\"" + this.classList + "\">" + this.innerHTML + "</div>"
+		}
+	</script>
+</body>
+</html>

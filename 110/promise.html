@@ -1,0 +1,37 @@
+<script>
+	function ajaxPromise(url) {
+		return new Promise(handler);
+
+		function handler(resolve, reject) {
+			var xhr = new XMLHttpRequest;
+
+			xhr.onreadystatechange = data => {
+				if(xhr.status === 200 && xhr.readyState === 4) {
+					resolve(xhr.responseText);
+				}
+			}
+			xhr.open("GET", url);
+			xhr.send();
+		}
+	}
+
+	ajaxPromise("https://api.myjson.com/bins/9zbfo")
+		.then(
+			data => {
+				return JSON.parse(data);
+			}
+		)
+		.then(result => {
+				return result["keK"];
+			}
+		)
+		.then(cheburek => {
+				console.log(cheburek)
+			}
+		)
+		.catch(
+			error => {
+				console.log(error)
+			}
+		)
+</script>

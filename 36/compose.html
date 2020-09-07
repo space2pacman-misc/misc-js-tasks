@@ -1,0 +1,28 @@
+<script>
+	function compose(f, g) {
+		return function() {
+			return f.call(this, g.apply(this, arguments));
+		}
+	}
+
+	function array(a, n) {
+		return Array.prototype.slice.call(a, n || 0); // Второй аргумент с какого индекса
+	}
+
+	function partialLeft(f) {
+		var args = arguments;
+
+		return function() {
+			var a = array(args, 1); // Без первого аргумента
+			a = a.concat(array(arguments));
+
+			return f.apply(this, a);
+		}
+	}
+
+	var not = partialLeft(compose, function(x) { return !x; /*1*/ })
+	var even = function(x) { return x % 2 === 0; /*2*/}
+	var odd = not(even);
+	console.log(odd(3)) // true
+	console.log(odd(4)) // false
+</script>

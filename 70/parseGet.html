@@ -1,0 +1,30 @@
+<script>
+	/*
+	var get = "name=Alex&age=20&gender=male";
+	var arr = [];
+	var data = {};
+	get = get.split("&");
+
+	for(var i = 0; i < get.length; i++) {
+		arr.push(get[i].split("="));
+	}
+
+	for(var i = 0; i < arr.length; i++) {
+		data[arr[i][0]] = arr[i][1]
+	}
+
+	console.log(data)
+	*/
+
+	function parseGet(str) {
+		var data = {};
+		var split = str.split("&");
+		var list = [];
+
+		split.forEach(item => { data[item.split("=")[0]] = item.split("=")[1] })
+
+		return data;
+	}
+
+	console.log(parseGet("name=Alex&age=20&gender=male"));
+</script>

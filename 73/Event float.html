@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="apple">
+		<div class="orange">Orange</div>
+	</div>
+	<script>
+		var apple = document.querySelector(".apple");
+		var orange = document.querySelector(".orange");
+		
+		orange.addEventListener("click", function(e) {
+			console.log("orange one");
+			//e.stopPropagation(); // Отмена всплытия
+			//e.stopImmediatePropagation(); // Отмена других обработчиков
+		})
+
+		orange.addEventListener("click", function() {
+			console.log("orange two");
+		})
+
+		document.addEventListener("click", function() {
+			console.log("document");
+		})
+		
+		window.addEventListener("click", function() {
+			console.log("window");
+		})
+
+		apple.addEventListener("click", function() {
+			console.log("apple");
+		}, true)
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Replace to func</title>
+</head>
+<body>
+	
+<div class="apple">apple</div>
+
+<script>
+	var apple = document.querySelector(".apple");
+
+	function calc() {
+		return 10*10;
+	}
+
+	apple.innerHTML = apple.innerHTML.replace("apple", calc)
+</script>
+
+</body>
+</html>

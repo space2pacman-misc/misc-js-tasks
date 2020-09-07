@@ -1,0 +1,19 @@
+<script>
+	var i = 0
+	var bool = false;
+top:if(true) {
+	for(; i <10; i++) {
+		console.log("out i: "+ i)
+		if(bool) {
+			console.log(true)
+		}
+		if(i == 5) {
+			i=6;
+			console.log("in i: " + i);
+			bool = true;
+			break top;
+		}
+		console.log(i)
+	}
+}
+</script>

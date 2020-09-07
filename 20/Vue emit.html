@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue emit</title>
+</head>
+<body>
+	
+<div id="app">
+	<eat v-for="item in list" v-bind:item="item" v-on:component-event="addFruit"></eat>
+</div>
+
+<script src="vue.js"></script>
+<script>
+	Vue.component("eat", {
+		props: ["item"],
+		methods: {
+			sendData(value) {
+				this.$emit("component-event", value)
+				//console.log(value, checked)
+			}
+		},
+		template: "<div><input v-bind:value='item' type='checkbox' v-on:input='sendData($event.target.value)'> {{ item }}</div>"
+	})
+
+	var app = new Vue({
+		el: "#app",
+		data: {
+			fruits: [],
+			list: ["apple", "orange", "plum"]
+		},
+		methods: {
+			addFruit(value) {
+				//this.fruits.push(value)
+				var index = this.fruits.indexOf(value);
+
+				if(index != -1) {
+					this.fruits.splice(index, 1);
+				} else {
+					this.fruits.push(value)
+				}
+				console.log(this.fruits);
+			}
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Scroll progress view</title>
+</head>
+<body>
+
+<style>
+	body {
+		margin: 0;
+		height: 5000px;
+	}
+
+	.progress {
+		width: 0%;
+		height: 20px;
+		position: fixed;
+		background: green;
+		left: 0;
+		top: 0;
+	}
+</style>
+
+<div class="progress"></div>
+
+<script>
+	var progress = document.querySelector(".progress");
+	var bodyHeight = document.body.offsetHeight - window.innerHeight;
+
+	window.addEventListener("scroll", function() {
+		progress.style.width = Math.floor(((window.scrollY - bodyHeight) / bodyHeight * 100) + 100) + "%";
+	})
+</script>
+
+</body>
+</html>

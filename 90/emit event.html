@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Emit event</title>
+</head>
+<body>
+
+<div id="app">
+	<food v-for="(fruit, index) in fruits" :item="fruit" :index="index" v-on:remove="removeItem"></food>
+</div>
+
+<template id="food">
+	<div class="food" :data-index="index">
+		{{ item }}
+		<span v-on:click="$emit('remove', index)">REMOVE</span>
+	</div>
+</template>
+
+<script src="vue.js"></script>
+<script>
+	Vue.component("food", {
+		props: ["item", "index"],
+		template: "#food"
+	})
+
+	var app = new Vue({
+		el: "#app",
+		data: {
+			fruits: ["apple", "orange", "plum"]
+		},
+		methods: {
+			removeItem: function(i) {
+				this.fruits.splice(i, 1);
+			}
+		}
+	})
+</script>
+</body>
+</html>

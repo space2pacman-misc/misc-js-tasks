@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>getElementFromPoint</title>
+</head>
+<body>
+	<style>
+		* {
+			border: 1px solid black;
+		}
+		.apple, .orange {
+			margin-top: 100px;
+			margin-left: 100px;
+		}
+	</style>
+	<div class="apple">apple</div>
+	<div class="orange">orange</div>
+	<span class="apple-inline">apple inline</span>
+	<script>
+		var apple = document.querySelector(".apple");
+		var appleInline = document.querySelector(".apple-inline");
+
+		document.addEventListener("mousemove", function(e) {
+			document.elementFromPoint(e.x, e.y).style.borderColor = "red";
+		})
+
+		console.log(apple.getBoundingClientRect())
+		console.log(appleInline.getBoundingClientRect())
+	</script>
+</body>
+</html>

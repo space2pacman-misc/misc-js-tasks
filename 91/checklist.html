@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Checklist</title>
+</head>
+<body>
+
+<style>
+	body {
+		margin: 0;
+		font-family: "Arial";
+	}
+
+	.text {
+		font-family: "Arial";
+		width: calc(100% - 50px);
+	    height: 30px;
+	    padding: 0px 10px;
+	    box-sizing: border-box;
+	}
+
+	.button {
+	    margin-left: -5px;
+    	width: 50px;
+    	height: 30px;
+	}
+
+	.task {
+	    background: #dcdcdc;
+    	padding: 10px 10px;
+        border-bottom: 1px solid #b9b9b9;
+	}
+
+	.remove {
+		float: right;
+	}
+
+	.remove span {
+	    transform: rotateZ(45deg);
+    	display: block;
+	}
+</style>
+	
+<div id="app">
+	<input type="text" class="text" v-model="text" v-on:keydown.enter="addTask">
+	<button class="button" v-on:click="addTask">+</button>
+	<task v-for="(task, index) in tasks" v-bind:item="task" v-bind:index="index" v-on:remove="removeTask"></task>
+</div>
+
+<template id="task">
+	<div class="task">
+		{{ item.text }} - {{ item.date }}
+		<button class="remove" v-on:click="$emit('remove', index)">
+			<span>+</span>
+		</button>
+	</div>
+</template>
+
+<script src="vue.js"></script>
+<script>
+	function Task(text) {
+		var date = new Date();
+
+		this.text = text;
+		this.date = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+	}
+
+	Vue.component("task", {
+		props: ["item", "index"],
+		template: "#task"
+	})
+
+	var app = new Vue({
+		el: "#app",
+		data: {
+			tasks: [],
+			text: ""
+		},
+		methods: {
+			addTask: function() {
+				if(this.text == "" || this.text == " ") return false;
+
+				this.tasks.push(new Task(this.text));
+				this.text = "";
+			},
+			removeTask: function(i) {
+				this.tasks.splice(i, 1);
+			}
+		}
+	})
+</script>
+
+</body>
+</html>

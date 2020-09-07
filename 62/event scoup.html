@@ -1,0 +1,20 @@
+<div class="apple">apple</div>
+<div class="orange">orange</div>
+<script>
+	var a = 10;
+
+	(function() {
+		var a = 0;
+
+		document.querySelector(".apple").addEventListener("click", function() { a++; console.log(a) })
+	})()
+
+	document.querySelector(".orange").addEventListener("click", (function() {
+		var a = 0;
+
+		return function() {
+			a++;
+			console.log(a);
+		}
+	})())
+</script>

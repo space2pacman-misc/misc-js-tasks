@@ -1,0 +1,12 @@
+<script>
+	function User(name) {
+		"use strict";
+		// this instanceof arguments.callee - error
+		if(this instanceof this.constructor) {
+			console.log("Call constructor");
+		}
+		this.name = name;
+	}
+
+	var user = new User("Alex");
+</script>

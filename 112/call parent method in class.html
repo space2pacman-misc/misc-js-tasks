@@ -1,0 +1,33 @@
+<script>
+	class Task {
+		constructor(title){
+			this.done = false;
+			this.title = title;
+			this.type = "Задача";
+			console.log("Создание задачи")
+		}
+
+		complete() {
+			this.done = true;
+			console.log(`${this.type} ${this.title} выполнена`);
+		}
+	}
+
+	class SubTask extends Task {
+		constructor(title) {
+			super(title);
+			this.type = "Подзадача";
+			console.log("Создание подзадачи");
+		}
+
+		complete() {
+			super.complete();
+		}
+	}
+
+	var task = new Task("Изучить JavaScript");
+	var subTask = new SubTask("Изучить ES6");
+
+	console.log(task);
+	console.log(subTask);
+</script>

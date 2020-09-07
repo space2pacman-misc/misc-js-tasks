@@ -1,0 +1,14 @@
+<script>
+	function inherit(obj) {
+		function F() {};
+		F.prototype = obj;
+		return new F;
+	}
+
+	var o = {x:1};
+
+	var o2 = inherit(o);
+
+	console.log(o2.x) // 1
+	console.log(o.isPrototypeOf(o2)) // true
+</script>

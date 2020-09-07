@@ -1,0 +1,23 @@
+<script>
+	function Animal(name, age) {
+		this.name = name;
+		this.age = age;
+		this.say = function(text) {
+			return this.name + ": " + text;
+		}
+	}
+
+	var dog = new Animal("Sharik", 10);
+	console.log(dog.say("Вуф-вуф"));
+	
+	function Extend(construct) {
+		function extClass() {
+			extClass.prototype = new construct()
+		}
+
+		return new extClass();
+	}
+
+	var rabbit = Extend(Animal);
+	console.log(rabbit)
+</script>

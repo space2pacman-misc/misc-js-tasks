@@ -1,0 +1,40 @@
+<script>
+	function f(x) {
+		return x*x;
+	}
+
+	var timer = {};
+
+	f = timingDecorator(f, "myFunc");
+
+	f(1);
+	f(2);
+	f(3);
+
+	console.log(timer.myFunc);
+
+	function timingDecorator(f, timerName) {
+		return function() {
+			if(!timer[timerName]) {
+				timer[timerName] = 0;
+			}
+
+			var start = +new Date;
+			var result = f.apply(this, arguments);
+
+			timer[timerName] += +new Date() - start;
+
+			return result;
+		}
+	}
+
+	var fibonacci = function f(n) {
+		return n>2 ? f(n-1) + f(n-2) : 1;
+	}
+
+	fibonacci = timingDecorator(fibonacci, "fib");
+
+	console.log(fibonacci(10))
+	console.log(fibonacci(20))
+	console.log(timer.fib)
+</script>

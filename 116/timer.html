@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Timer</title>
+</head>
+<body>
+	
+<script>
+	function timer(milliseconds, callback) {
+		var time = 0;
+
+		for(var i = 0; i < milliseconds.length; i++) {
+			time += milliseconds[i];
+
+			setTimeout(callback, time);
+		}
+	}
+
+	timer([10000, 1000, 1000, 1000], function() {
+		console.log("Hello")
+	})
+</script>
+
+</body>
+</html>

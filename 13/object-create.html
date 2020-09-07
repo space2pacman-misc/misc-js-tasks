@@ -1,0 +1,20 @@
+<script>
+	var obj = {}
+	var obj1 = new Object();
+	var obj2 = new Object;
+	var obj3 = Object.create(Object.prototype);
+	var obj4 = Object.create(null);
+	var obj5 = Object.create({x:1,y:1}); // с наследованием свойств
+	var objArr = Object.create(Array.prototype);
+
+	objArr.push(1,2,3);
+	console.log(objArr); // [1,2,3]
+	console.log(typeof objArr); // "object"
+
+	console.log(obj)
+	console.log(obj1)
+	console.log(obj2)
+	console.log(obj3)
+	console.log(obj4)
+	console.log(obj5)
+</script>

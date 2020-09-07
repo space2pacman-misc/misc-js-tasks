@@ -1,0 +1,13 @@
+<script>
+	function getConstructorName(type) {
+		return type.constructor.name;
+	}
+
+	console.log(getConstructorName("hello"))
+	console.log(getConstructorName(10))
+	console.log(getConstructorName(true))
+	console.log(getConstructorName(function() {}))
+	console.log(getConstructorName({}))
+	console.log(getConstructorName([]))
+	console.log(getConstructorName(document.createElement("div")))
+</script>

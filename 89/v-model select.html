@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>double button event</title>
+</head>
+<body>
+
+<div id="app">
+	<select v-model="selected">
+		<option value="">Выбор...</option>
+		<option>A</option>
+		<option>B</option>
+		<option>C</option>
+	</select>
+
+	<input type="checkbox" v-model="checked" v-bind:true-value="a" v-bind:false-value="b">
+
+	<select v-model="nums">
+		<option v-bind:value="{ number: 123 }">123</option>
+	</select>
+
+	<input v-model.lazy="message">
+	<input v-model.number="numbers">
+</div>
+
+<script src="vue.js"></script>
+<script>
+	var app = new Vue({
+		el: "#app",
+		data: {
+			selected: "",
+			checked: "",
+			a: "apple",
+			b: "orange",
+			nums: "",
+			numbers: null,
+			message: ""
+		},
+		watch: {
+			message: function() {
+				console.log("input change value")
+			},
+			numbers: function(value) {
+				console.log(value, typeof value)
+			}
+		}
+	})
+</script>
+</body>
+</html>

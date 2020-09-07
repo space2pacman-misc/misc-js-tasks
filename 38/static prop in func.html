@@ -1,0 +1,16 @@
+<script>
+	function Article() {
+		Article.count++;
+	}
+
+	Article.count = 0;
+
+	Article.getCount = function() {
+		console.log(this.count);
+	}
+
+	Article();
+	Article();
+
+	Article.getCount();
+</script>

@@ -1,0 +1,56 @@
+<script>
+var keyboard = [
+  ["a", "b", "c", "d", "e", "1", "2", "3"],
+  ["f", "g", "h", "i", "j", "4", "5", "6"],
+  ["k", "l", "m", "n", "o", "7", "8", "9"],
+  ["p", "q", "r", "s", "t", ".", "@", "0"],
+  ["u", "v", "w", "x", "y", "z", "_", "/"]
+] 
+
+var tvRemote = word => {
+  var pos = {
+    start: { x: 0, y: 0 },
+    end: { x: 0, y: 0 }
+  };
+  var words = word.split("");
+  var step = 1;
+  var steps = 0;
+  
+  words.map(word => {
+    for(var i = 0; i < keyboard.length; i++) {
+      for(var j = 0; j < keyboard[i].length; j++) {
+        
+        if(keyboard[i][j] == word) {
+          pos.end.x = i;
+          pos.end.y = j;
+          
+          while(pos.start.x != pos.end.x) {
+            if(pos.start.x < pos.end.x) {
+              pos.start.x++
+            } else {
+              pos.start.x--
+            }
+            step++;
+          }
+
+          while(pos.start.y != pos.end.y) {
+           if(pos.start.y < pos.end.y) {
+              pos.start.y++;
+           } else {
+              pos.start.y--;
+           }
+           step++;
+          }
+
+          steps += step;
+          step = 1;
+        }
+       
+      }
+    }
+  })
+}
+
+tvRemote("codewars")
+
+</script>

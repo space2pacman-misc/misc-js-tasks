@@ -1,0 +1,17 @@
+<script>
+	function defer(f, ms) {
+		return function() {
+			setTimeout(() => {
+				f.apply(this, arguments)
+			}, ms)
+		}
+	}
+
+	function sayHi(who) {
+		console.log("Hola " + who);
+	}
+
+	var sayHiDefer = defer(sayHi, 1000);
+
+	sayHiDefer("Alex");
+</script>

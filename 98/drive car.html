@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Drive car</title>
+</head>
+<body>
+	
+<style>
+	body {
+		overflow: hidden;
+	}
+
+	.car {
+		width: 28px;
+    	height: 56px;
+    	background: url(cars.jpg);
+    	background-size: 200px;
+    	background-position: -8px -10px;
+    	position: absolute;
+    	left: 0;
+    	right: 0;
+    	top: 0;
+    	bottom: 0;
+    	margin: auto;
+	}
+</style>
+
+<div class="car"></div>
+
+<script>
+	var car = document.querySelector(".car");
+	var point;
+	var angle = 0;
+	var speed = 5;
+	var x = 0;
+	var y = 0;
+	var pos;
+	var deltaX;
+	var deltaY;
+	var signX;
+	var signY;
+	var error;
+	var timer;
+
+	function rotateCar(angle) {
+		changePosition();
+		car.style.transform = "rotateZ(" + angle + "deg)";
+	}
+
+	function changePosition() {
+		pos = getVector(x, y, angle - 90, 10);
+		deltaX = Math.abs(pos.x - x);
+	    deltaY = Math.abs(pos.y - y);
+	    signX = x < pos.x ? 1 : -1;
+	    signY = y < pos.y ? 1 : -1;
+	    error = deltaX - deltaY;
+	}
+	
+	function controlCar(e) {
+		switch(e.keyCode) {
+			case 37:
+				angle -= speed;
+				rotateCar(angle);
+				break;
+			case 39:
+				angle += speed;
+				rotateCar(angle);
+				break;
+			case 38:
+				driveCar();
+				break;
+		}
+	}
+
+	function getVector(x, y, angle, length) {
+    	angle = angle * Math.PI / 180;
+   		
+   		return { x: length * Math.cos(angle) + x, y: length * Math.sin(angle) + y}
+	}
+
+	function driveCar() {
+		drawLine(function(posX, posY) {
+			x = posX;
+			y = posY;
+			car.style.left = x + "px";
+			car.style.top = y + "px";
+		});
+	}
+
+	function drawLine(callback) {
+		var timer = setInterval(function() {
+			if(error * 2 > -deltaY) {
+		        error -= deltaY;
+		        x += signX;
+		    }
+		        	
+		    if(error * 2 < deltaX) {
+		      	error += deltaX;
+		        y += signY;
+		    }
+
+		    callback(x,y);
+		})
+	}
+
+	function init() {
+		document.addEventListener("keydown", controlCar);
+		rotateCar(angle);
+	}
+
+	init();
+</script>
+
+</body>
+</html>

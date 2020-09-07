@@ -1,0 +1,25 @@
+<script>
+	Object.prototype.each = function(f) {
+		for(prop in this) {
+
+			if(!this.hasOwnProperty(prop)) continue
+
+
+			var value = this[prop];
+			f.call(this, prop, value);
+		}
+	}
+
+	var user = {
+		name: "Alex",
+		age: 20
+	}
+	/*
+	for(prop in user) {
+		console.log(prop) // name, age
+	}
+	*/
+	user.each(function(a,b) {
+		console.log(a,b)
+	})
+</script>

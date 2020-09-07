@@ -1,0 +1,14 @@
+<div class="button">button</div>
+<script>
+	var button = document.querySelector(".button");
+
+	button.addEventListener("click", function() {
+		console.log("addEventListener");
+	})
+
+	button.onclick = function() {
+		console.log("onclick");
+	}
+
+	button.dispatchEvent(new Event("click"));
+</script>

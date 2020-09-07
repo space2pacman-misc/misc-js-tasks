@@ -1,0 +1,16 @@
+<div class="apple">
+	<div class="orange">Апельсин</div>
+</div>
+
+<script>
+	function getWrap(el) {
+		var element = document.querySelector(el);
+		var elementString = element.outerHTML;
+		var parent = element.parentElement;
+		var content = parent.outerHTML;
+
+		return content.replace(elementString, "").replace(/\n/gi, "");
+	}
+
+	console.log(getWrap(".orange"))
+</script>

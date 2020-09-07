@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Benchmark HTMLCollection vs array</title>
+</head>
+<body>
+	
+<div class="elements"></div>
+
+<script>
+	var count = 100000;
+
+	// elements
+	var elements = document.querySelector(".elements");
+	var element;
+
+	for(var i = 0; i < count; i++) {
+		element = document.createElement("div");
+		element.classList.add("element");
+		elements.appendChild(element);
+	}
+
+	// numbers
+	var numbers = [];
+
+	for(var i = 0; i < count; i++) {
+		numbers.push({left: 0, right: 0, top: 0, bottom: 0})
+	}
+
+	// test
+	function benchmark(object, properties) {
+		var start;
+		var end;
+		var time = 0;
+
+		start = new Date;
+		for(var i = 0; i < properties.length; i++) {
+			for(var j = 0; j < object.length; j++) {
+				object[j][properties[i]]
+			}
+		}
+		end = new Date;
+
+		time += end - start;
+
+		return time;
+	}
+
+	var test = {}
+
+	test.elements = benchmark(document.querySelectorAll(".element"), ["offsetLeft", "offsetTop"]);
+	test.numbers = benchmark(numbers, ["left", "top"]);
+	
+	console.log("elements: " + test.elements + "ms");
+	console.log("numbers: " + test.numbers + "ms");
+</script>
+
+</body>
+</html>

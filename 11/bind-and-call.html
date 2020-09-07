@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>bind and call</title>
+</head>
+<body>
+
+<script>
+	var apple = {
+		value: 10,
+		getValue: function() {
+			console.log(this.value);
+		}
+	}
+
+	var orange = {
+		value: 20,
+		getValue: function() {
+			console.log(this.value);
+		}
+	}
+
+	//apple.getValue(); // 10
+	setTimeout(apple.getValue); // undefined
+	setTimeout(apple.getValue.bind(apple)); // 10
+
+	//(apple.getValue)() // 10
+	//(apple.getValue.bind(orange))() // 20
+	//apple.getValue.bind(orange).call() // 20
+</script>
+
+</body>
+</html>

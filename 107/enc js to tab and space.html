@@ -1,0 +1,46 @@
+<script>
+	function enc(code) {
+		var str = code.split("");
+		var binary = str.map(char => {
+			return char.charCodeAt().toString(2).replace(/./g, handler);
+		});
+		var result = binary.join("\f");
+
+		function handler(n) {
+			if(n === "0") {
+				return "\0";
+			}
+
+			if(n === "1") {
+				return "\t";
+			}
+		}
+
+		return result;
+	}
+
+	function dec(enc) {
+		var array = enc.split("\f");
+		var str = array.map(char => {
+			return String.fromCharCode(parseInt(char.replace(/./g, handler), 2));
+		})
+		var result = str.join("");
+
+		function handler(n) {
+			if(n === "\0") {
+				return "0";
+			}
+
+			if(n === "\t") {
+				return "1";
+			}
+		}
+
+		return result;
+	}
+
+	var encResult = enc("alert(123)");
+	var decResult = dec(encResult);
+
+	eval(decResult)
+</script>

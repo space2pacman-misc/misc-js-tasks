@@ -1,0 +1,12 @@
+<script>
+	var option = {
+		title: "Гусь"
+	}
+
+	function show({title = "Default", width:w=100, height:h=200} = {}) {
+		console.log(title, w, h)
+	}
+
+	show(option);
+	show();
+</script>

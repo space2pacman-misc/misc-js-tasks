@@ -1,0 +1,21 @@
+<script>
+	function User() {
+		this.status = 1;
+	}
+
+	User.prototype.walk = "walk...";
+
+	function Guest() {
+		
+	}
+
+	//Guest.prototype = User.prototype; // guest.status == undefined
+	Guest.prototype = new User; // guest.status == 1
+
+
+	var guest = new Guest();
+	User.prototype.jump = "jump...";
+
+	console.log(guest.walk);
+	console.log(guest.jump);
+</script>

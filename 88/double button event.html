@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>double button event</title>
+</head>
+<body>
+
+<div id="app">
+	<input v-on:keyup.ctrl="test">
+	<div class="apple" v-on:click.ctrl="test">apple</div>
+</div>
+
+<script src="vue.js"></script>
+<script>
+	var app = new Vue({
+		el: "#app",
+		methods: {
+			test: function(event) {
+				console.log("test");
+			}
+		}
+	})
+</script>
+</body>
+</html>

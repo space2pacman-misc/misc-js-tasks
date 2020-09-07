@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue custom direcive</title>
+</head>
+<body>
+
+<div id="app">
+	<select v-model="answer01">
+		<option v-for="item in list" :value="item.value.server">{{ item.value.client }}</option>
+	</select>
+	{{ answer01 }}
+	<br>
+</div>
+	
+<script src="vue.min.js"></script>
+<script>
+let app = new Vue({
+	el: "#app",
+	data: {
+		answer01: "",
+		list: [
+			{
+				value: {
+					server: 0,
+					client: "no"
+				}
+			},
+			{
+				value: {
+					server: 1,
+					client: "yes"
+				}
+			}
+		]
+	}
+})
+</script>
+</body>
+</html>

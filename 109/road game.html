@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Road game</title>
+</head>
+<body>
+	
+<style>
+	body {
+		overflow: hidden;
+	}
+
+	.roads {
+		perspective: 100px;
+		margin-top: -300px;
+	}
+
+	.road {
+		transform: rotateX(65deg);
+	}
+
+	.road-part {
+	    background-image: url(road.png);
+	    width: 210px;
+	    height: 1000px;
+	    background-size: 100%;	
+	    margin: auto;
+	    animation: move 5s infinite linear;
+	}
+
+	@keyframes move {
+		0% {
+			background-position-y: 0px;
+		}
+
+		100% {
+			background-position-y: 187px;
+		}
+	}
+</style>
+
+<div class="roads">
+	<div class="road">
+		<div class="road-part"></div>
+	</div>
+</div>
+
+</body>
+</html>

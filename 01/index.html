@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<button data-value="0" class="button">0</button>
+<button data-value="0" class="button">0</button>
+<button data-value="0" class="button">0</button>
+
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+	var button = $(".button");
+
+	button.on("click", function() {
+		var count = +$(this).data("value");
+		count++
+		$(this).data("value", count);
+		$(this).html(count);
+	})
+</script>
+
+</body>
+</html>

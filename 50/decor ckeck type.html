@@ -1,0 +1,28 @@
+<script>
+	function sum(a, b) {
+		return a + b;
+	}
+
+	console.log(sum(true, { name: "Alex", age: 35}));
+
+	function checkNumber(value) {
+		return typeof value == "number";
+	}
+
+	function typeCheck(f, checks) {
+		return function() {
+			for(var i = 0; i < arguments.length; i++) {
+				if (!checks[i](arguments[i])) {
+					throw Error("Некорректный тип аргумента номер " + i);
+				}
+			}
+
+			return f.apply(this, arguments);
+		}
+	}
+
+	var sum = typeCheck(sum, [checkNumber, checkNumber]);
+
+	console.log(sum(1,2)) // 3
+	//console.log(sum(1,true)) // Uncaught Error: Некорректный тип аргумента номер 1
+</script>

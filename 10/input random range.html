@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello</title>
+</head>
+<body>
+
+<div id="app">
+	<input type="range" v-bind:value="num">
+	<button v-on:click="getRandom">Запуск</button>
+</div>
+
+<script src="vue.js"></script>
+<script>
+	var app = new Vue({
+		el: "#app",
+		data: {
+			num: null
+		},
+		methods: {
+			getRandom: function() {
+				this.num =  Math.floor(Math.random() * 100);
+			}
+		}
+	})	
+</script>
+</body>
+</html>

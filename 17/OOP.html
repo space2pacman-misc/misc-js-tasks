@@ -1,0 +1,23 @@
+<script>
+	function Main() {
+		var enable = true;
+		this.enable = function () {
+			enable = true;
+			console.log(enable)
+		}
+		this.disable = function () {
+			enable = false;
+			console.log(enable)
+		}
+	}
+
+	function CoffeMachine(amount) {
+		Main.call(this);
+
+		this.waterAmount = amount
+	}
+
+	var coffeMachine = new CoffeMachine(1000)
+
+	console.log(coffeMachine)
+</script>

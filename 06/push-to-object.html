@@ -1,0 +1,23 @@
+<script>
+	var fruits = {
+		0: "apple"
+	}
+
+	fruits.push = function(value) {
+		this.push = [].push
+		if(length in fruits) {
+			this.length = Object.keys(this).length - 1;
+		}
+		this.push(value);
+		Object.defineProperty(this, "push", {
+			enumerable: false
+		})
+		Object.defineProperty(this, "length", {
+			enumerable: false
+		})
+
+	}
+
+	fruits.push("orange");
+	console.log(fruits)
+</script>

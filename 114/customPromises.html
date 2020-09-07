@@ -1,0 +1,60 @@
+<script>
+	function CustomPromise(callback) {
+		this._result = null;
+		this._error = false;
+		this._errorText = null;
+
+		callback(resolve.bind(this), reject.bind(this));
+
+		function resolve(result) {
+			this._result = result;
+
+			return this;
+		}
+
+		function reject(error) {
+			this._error = true;
+			this._errorText = error;
+
+			return this;
+		}
+	}
+
+	CustomPromise.prototype.then = function(callback) {
+		if(!this._error) {
+			this._result = callback(this._result);
+		}
+		
+		return this;
+	}
+
+	CustomPromise.prototype.catch = function(callback) {
+		if(this._error) {
+			callback(this._errorText);
+		}
+		
+		return this;
+	}
+
+	var promise = new CustomPromise(function(resolve, reject) {
+		if(true) {
+			resolve("it's work");
+		} else {
+			reject(new Error("Error"));
+		}
+	})
+
+	promise.then(function(a) {
+		console.log(a);
+
+		return a.toUpperCase();
+	}).then(function(b) {
+		console.log(b);
+
+		return b.length;
+	}).then(function(c) {
+		console.log(c);
+	}).catch(function(error) {
+		console.log(error)
+	})
+</script>

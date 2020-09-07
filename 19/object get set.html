@@ -1,0 +1,16 @@
+<script>
+	var fruits = {
+		apple: 10,
+		get appleValue() {
+			return this.apple
+		},
+		set appleValue(value) {
+			this.apple = value;
+		}
+	}
+
+	console.log(fruits);
+	console.log(fruits.appleValue); // 10
+	fruits.appleValue = 20;
+	console.log(fruits.appleValue); // 20
+</script>

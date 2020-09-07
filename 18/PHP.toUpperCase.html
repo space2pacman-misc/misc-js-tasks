@@ -1,0 +1,10 @@
+<script>
+	String.prototype.copyToUpperCase = "".toUpperCase;
+	String.prototype.toUpperCase = function() {
+		if(this == "php") {
+			return "Wtf man ?";
+		} else {
+			return this.copyToUpperCase();
+		}
+	}
+</script>

@@ -1,0 +1,18 @@
+<div class="button">
+	button
+	<div class="close">close</div>
+</div>
+
+<script>
+	var button = document.querySelector(".button");
+	var close = document.querySelector(".close");
+
+	button.addEventListener("click", function() {
+		console.log("button");
+	})
+
+	close.addEventListener("click", function(e) {
+		e.stopPropagation();
+		console.log("close");
+	})
+</script>

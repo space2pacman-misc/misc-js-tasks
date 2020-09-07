@@ -1,0 +1,45 @@
+<script>
+	function watch(object, callback) {
+		var keys = Object.keys(object);
+
+		function traking() {
+			console.log("traking...");
+			callback();
+		}
+
+		keys.forEach(key => {
+			object["_" + key] = object[key];
+
+			Object.defineProperty(object, "_" + key, {
+				enumerable: false,
+				configurable: false
+			})
+
+			Object.defineProperty(object, key, {
+				get: function() {
+					return this["_" + key];
+				},
+				set: function(value) {
+					this["_" + key] = value;
+					traking();
+
+					return this["_" + key];
+				}
+			})
+		})
+	}
+
+	var fruits = {
+		apple: 10,
+		orange: 20
+	}
+
+	watch(fruits, function() {
+		console.log("from callback...")
+	});
+
+	console.log(fruits)
+	fruits.apple = 30;
+	console.log(fruits)
+	console.log(fruits.apple)
+</script>

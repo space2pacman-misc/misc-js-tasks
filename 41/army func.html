@@ -1,0 +1,16 @@
+<script>
+	function makeArmy() {
+		var result = [];
+
+		for(var i = 0; i < 10; i++) {
+			(function(n) { result.push(function() { return n }) })(i)
+		}
+
+		return result;
+	}
+
+	var army = makeArmy();
+
+	console.log(army[0]()) // 0
+	console.log(army[5]()) // 5 b
+</script>

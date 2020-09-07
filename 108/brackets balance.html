@@ -1,0 +1,31 @@
+<script>
+	function bracketsBalance(str) {
+		if(str.length === 0) return true;
+
+		var array = str.split("");
+		var bracksts = {
+			"[": 0,
+			"]": 0,
+			"(": 1,
+			")": 1,
+			"{": 2,
+			"}": 2,
+		}
+
+		for(var i = 0; i < array.length; i++) {
+			if(bracksts[array[0]] === bracksts[array[array.length - 1]]) {
+				array.pop();
+				array.shift();
+
+				return bracketsBalance(array.join(""));
+			} else {
+				return false;
+			}
+		}
+	}
+
+	console.log(bracketsBalance("[()]{}{[()()]()}")) // false
+	console.log(bracketsBalance("[({})]")) // true
+	console.log(bracketsBalance("(){}")) // false
+	console.log(bracketsBalance("({(()))}}")) // false
+</script>

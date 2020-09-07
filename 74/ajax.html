@@ -1,0 +1,21 @@
+<script>
+	function ajax(option) {
+		var request = new XMLHttpRequest;
+
+		request.open(option.type, option.url);
+		request.send();
+		request.onreadystatechange = function() {
+			if(request.status == 200 && request.readyState == 4) {
+				option.sucess(request.responseText);
+			}
+		}
+	}
+
+	ajax({
+		type: "GET",
+		url: "https://api.myjson.com/bins/11q3y2",
+		sucess: function(data) {
+			console.log(JSON.parse(data))
+		}
+	})
+</script>

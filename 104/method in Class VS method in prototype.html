@@ -1,0 +1,53 @@
+<script>
+	function Fruits01() {
+		this.count = 0;
+		this.date = function() {
+			return new Date();
+		}
+		this.getCount = function() {
+			return this.count;
+		}
+	}
+
+	function Fruits02() {
+		this.count = 0;
+	}
+
+	Fruits02.prototype.getCount = function() {
+		return this.count;
+	}
+
+	Fruits02.prototype.date = function() {
+		return new Date();
+	}
+
+	function Fruits03() {
+		this.count = 0;
+		this.getCount = () => {
+			return this.count;
+		}
+	}
+
+	function Fruits04() {
+		this.count = 0;
+	}
+
+	Fruits04.prototype.getCount = () => {
+		return this.count;
+	}
+
+	var apple01 = new Fruits01();
+	var apple02 = new Fruits02();
+	var apple03 = new Fruits03();
+	var apple04 = new Fruits04();
+
+	console.log(apple01);
+	console.log(apple02);
+	console.log(apple03);
+	console.log(apple04);
+
+	console.log(apple01.getCount());
+	console.log(apple02.getCount());
+	console.log(apple03.getCount());
+	console.log(apple04.getCount());
+</script>

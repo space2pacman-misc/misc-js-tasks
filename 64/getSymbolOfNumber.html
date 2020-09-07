@@ -1,0 +1,8 @@
+<script>
+	function getSymbolOfNumber(n) {
+		return n.toString().split("")[0] == "-" ? "minus" : "plus"
+	}
+
+	console.log(getSymbolOfNumber(-5))
+	console.log(getSymbolOfNumber(5))
+</script>

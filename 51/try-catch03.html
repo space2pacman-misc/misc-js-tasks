@@ -1,0 +1,35 @@
+<script>
+	function ReadError(message, cause) {
+		this.message = message;
+		this.cause = cause;
+		this.name = "ReadError";
+		this.stack = cause.stack;
+	}
+
+	function readData() {
+		var data = '{ bad data }';
+
+		try {
+			JSON.parse(data);
+		} catch(e) {
+			if(e.name == "URIErroe") {
+				throw new ReadError("Ошибка в URI", e);
+			} else if (e.name == "SyntaxError") {
+				throw new ReadError("Синтасическая ошибка", e);
+			} else {
+				throw e;
+			}
+		}
+	}
+
+	try {
+		readData()
+	} catch(e) {
+		if(e.name == "ReadError") {
+			console.log(e.message);
+			console.log(e.cause);
+		} else {
+			throw e;
+		}
+	}
+</script>

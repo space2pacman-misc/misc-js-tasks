@@ -1,0 +1,18 @@
+<script>
+	var eats = {
+		fruits: {
+			apple: 10,
+			orange: 20
+		}
+	}
+
+	var calc = {
+		result: null,
+		sum: function() {
+			this.parent.result = this.outer.fruits.apple + this.outer.fruits.orange;
+			console.log(this.parent.result)
+		}
+	}
+
+	calc.sum.call({outer: eats, parent, calc})
+</script>

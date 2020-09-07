@@ -1,0 +1,23 @@
+<script>
+	function rowSumOddNumbers(n) {
+  		var nums = { start: 0, end: 0 };
+  		var result = 0;
+
+  		for(var i = 0; i < n; i++) {
+    		nums.start += i+i;	
+  		}
+
+  		for(var i = 0; i < n + 1; i++) {
+    		nums.end += i+i;	
+  		}
+
+
+  		for(var i = nums.start; i <= nums.end; i++) {
+  			if(i % 2 != 0) result += i;
+  		}
+  		console.log(result)
+  		console.log(nums)
+	}
+
+	rowSumOddNumbers(42);
+</script>

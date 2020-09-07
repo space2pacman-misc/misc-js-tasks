@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Binding</title>
+</head>
+<body>
+	
+<script>
+function greeting(callback) {
+	callback("hello")
+}
+
+function our(string0, string1) {
+	console.log(string0, string1);
+}
+
+greeting(our);
+greeting(our.bind(null, "hola"));
+console.log(our.bind(null, "hola"))
+
+</script>
+
+</body>
+</html>

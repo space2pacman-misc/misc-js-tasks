@@ -1,0 +1,11 @@
+<script>
+	Array.prototype.toString = function() {
+		var result = 0;
+
+		this.forEach(function(item) {
+			result += item;
+		})
+
+		return result;
+	}
+</script>

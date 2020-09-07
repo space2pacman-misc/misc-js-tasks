@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cloneNode</title>
+</head>
+<body>
+	<div class="apple">
+		apple
+		<div class="orange">orange</div>
+		<div class="fruits">
+			<div class="plum">plum</div>
+		</div>
+	</div>
+
+	<script>
+		var apple = document.querySelector(".apple");
+		var orange = document.querySelector(".orange");
+
+		var cloneFull = apple.cloneNode(true)
+		var clone = apple.cloneNode(false)
+
+		apple.insertBefore(clone, orange)
+		//apple.insertBefore(clone, orange.nextElementSibling)
+	</script>
+</body>
+</html>

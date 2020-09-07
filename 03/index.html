@@ -1,0 +1,28 @@
+<script>
+	var fruits = {
+		apple: 10,
+		orange: 20,
+		plum: 30
+	}
+
+	var vegetables = {
+		carrot: 10,
+		pumpkin: 20,
+		potato: 30
+	}
+
+	function incKeys(obj) {
+		for(item in obj) {
+			if(item == "apple") {
+				Object.defineProperty(obj, item, {
+					writable: false
+				})
+			}
+
+			obj[item]++;
+		}
+	}
+
+	incKeys(fruits);
+	console.log(fruits)
+</script>

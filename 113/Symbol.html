@@ -1,0 +1,13 @@
+<script>
+	var x1 = Symbol("x");
+	var x2 = Symbol("x");
+	var obj = {
+		x: 10,
+		[x1]: 20,
+		[x2]: 30,
+	}
+
+	console.log(obj)
+	console.log(obj[x1])
+	console.log(obj[x2])
+</script>

@@ -1,0 +1,23 @@
+<script>
+	var fruits = {
+		apple: function(value) {
+			if(value) {
+				//console.log(value*value)
+				return value*value;
+			} else {
+				return 2+2;
+			}
+		}
+	}
+
+	fruits._apple = fruits.apple;
+
+	Object.defineProperty(fruits, "apple", {
+		get: function() {
+			return this["_apple"]();
+		},
+		set: function(value) {
+			return this["_apple"](value)
+		}
+	})
+</script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>self click</title>
+</head>
+<body>
+
+<style>
+	.apple {
+		width: 200px;
+		height: 200px;
+		background: green;
+	}
+
+	.orange {
+		width: 50px;
+		height: 50px;
+		background: orange;
+	}
+</style>
+
+<div id="app">
+	<div class="apple" v-on:click.self="selfClick">
+		<div class="orange"></div>
+	</div>
+</div>
+
+<script src="vue.js"></script>
+<script>
+	var app = new Vue({
+		el: "#app",
+		methods: {
+			selfClick: function(event) {
+				console.log(event)
+				console.log("selfClick");
+			}
+		}
+	})
+</script>
+</body>
+</html>

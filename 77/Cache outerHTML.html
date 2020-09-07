@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="apple">
+		<div class="orange">orange</div>
+	</div>
+	<a href="#">test</a>
+
+	<script>
+		var apple = document.querySelector(".apple");
+		var orange = document.querySelector(".orange");
+
+		console.log(orange.outerHTML)
+		orange.outerHTML = "<div class='plum'>plum</div>";
+		console.log(orange.outerHTML)
+		console.log(document.nodeType)
+		console.dir(document)
+		document.linkColor = "orange"
+		console.log(document.readyState)
+
+		document.addEventListener("DOMContentLoaded", function() {
+			console.log(document.readyState) // interactive, why ?
+		})
+
+		window.addEventListener("load", function() {
+			console.log(document.readyState) // complete, why ?
+		})
+	</script>
+</body>
+</html>

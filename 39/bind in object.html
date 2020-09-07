@@ -1,0 +1,13 @@
+<script>
+	var user = {
+		name: "Alex",
+		sayHi: function() {
+			alert("Hello " + this.name);
+		}
+	}
+
+	user.sayHi = user.sayHi.bind(user);
+
+	//setTimeout(user.sayHi.bind(user))
+	setTimeout(user.sayHi)
+</script>

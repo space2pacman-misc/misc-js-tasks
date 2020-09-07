@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RPG</title>
+</head>
+<body>
+
+<style>
+	.field {
+		width: 800px;
+		height: 500px;
+		margin: 0 auto;
+		border: 1px solid;
+	}
+</style>
+
+<div class="field"></div>
+
+<script>
+	var field = document.querySelector(".field");
+	var x = 0;
+	var y = 0;
+
+	document.addEventListener("mousedown", function(e) {
+			if(e.target == field) {
+				var box = document.createElement("div");
+				box.style.left = e.clientX + "px";
+				box.style.top = e.clientY + "px";
+				box.style.border = "1px solid";
+				box.style.position = "absolute";
+				box.style.zIndex = "-1";
+				field.appendChild(box);
+				x = e.clientX;
+				y = e.clientY;
+			}
+		document.addEventListener("mousemove", function(eventMove) {
+			if(eventMove.target == field) {
+				box.style.width = (eventMove.clientX - x) + "px";
+				box.style.height = (eventMove.clientY - y) + "px";
+			}
+		})
+		document.addEventListener("mouseup", function() {
+				box.parentNode.removeChild(box)
+		})
+	})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<style>
+	.cube {
+		width: 100px;
+		height: 100px;
+		border: 1px solid;
+		position: relative;
+	}
+
+	.lineOne {
+		width: 100%;
+		height: 10%;
+		position: absolute;
+		background: linear-gradient(to right, green, red);
+		animation: lineOne .5s infinite linear;
+	}
+
+	.block {
+		width: 80%;
+	    height: 80%;
+	    background: black;
+	    position: absolute;
+	    left: 0;
+	    right: 0;
+	    top: 0;
+	    bottom: 0;
+	    margin: auto;
+	}
+
+	@keyframes lineOne {
+		0% {
+			top: 0px;
+			left: 10px;
+			width: 90%;
+		}
+
+		5% {
+			left: 0px;
+			width: 90%;
+			height: 10%;
+		}
+
+		20% {
+			width: 10%;
+			height: 90%;
+			top: 0px;
+		}
+
+		25% {
+			width: 10%;
+			height: 90%;
+			top: 10px;
+		}
+
+		45% {
+			height: 10%;
+			top: 90px;
+			left: 0px;
+		}
+
+		50% {
+			height: 10%;
+			width: 90%;
+			left: 10px;
+			top: 90px;
+		}
+
+		70% {
+			top: 10px;
+			left: 90px;
+			height: 90%;
+			width: 10%;
+		}
+
+		75% {
+			top: 0px;
+			left: 90px;
+			width: 10%;
+			height: 90%;
+		}
+
+		95% {
+			height: 10%;
+		}
+
+		100% {
+			left: 10px;
+			height: 10%;
+			width: 90%;
+		}
+
+	}
+</style>
+
+<div class="cube">
+	<div class="lineOne"></div>
+	<div class="block"></div>
+</div>
+
+</body>
+</html>

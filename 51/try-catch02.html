@@ -1,0 +1,29 @@
+<script>
+	function readData() {
+		var data = '{ "name": "Alex", "age": 20 }';
+
+		try {
+			var user = JSON.parse(data);
+
+			if(!user.name) {
+				throw new SyntaxError("Ошибка в данных");
+			}
+
+			blabla();
+
+			alert(user.name)
+		} catch(e) {
+			if(e.name == "SyntaxError") {
+				alert("Sorry");
+			} else {
+				throw e;
+			}
+		}
+	}
+
+	try {
+		readData()
+	} catch(e) {
+		console.log(e)
+	}
+</script>

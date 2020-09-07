@@ -1,0 +1,14 @@
+<button>+</button>
+<script>
+	var b = document.querySelector("button");
+	var arr = [1,2,3]
+
+	b.addEventListener("click", function() {
+		getArguments.apply(null, arr)
+	})
+
+	function getArguments() {
+		arr.push(Math.floor(Math.random()*10))
+		console.log(arguments)
+	}
+</script>

@@ -1,0 +1,42 @@
+<script>
+	var obj = {
+		a: {
+			a_b: 10
+		},
+		b: 2,
+		c: {
+			c_a: {
+				c_a_a: {
+					c_a_a_a: 1000
+				}
+			}
+		},
+		d: {
+			d_a: {
+				d_a_a: {
+					d_a_a_a: 1000,
+					d_a_a_b: 2000,
+					d_a_a_c: {
+						d_a_a_c_a: 10000
+					}
+				}
+			}
+		}
+	}
+	
+	function walkObject(o) {
+		if(!walkObject.result && typeof !walkObject.result != "object") walkObject.result = [];
+
+		for(key in o) {
+			if(typeof o[key] == "object") {
+				walkObject(o[key]);
+			} else {
+				walkObject.result.push(o[key]);
+			}
+		}
+
+		return walkObject.result;
+	}
+
+	console.log(walkObject(obj))
+</script>

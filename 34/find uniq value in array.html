@@ -1,0 +1,42 @@
+<script>
+	var words = ["moscow", "moscow", "spb", "moscow", "spb", "tver", "vladivostok", "tver"];
+		var transform = [];
+
+	function find(arr) {
+		var result = [];
+		var count = 0;
+
+		arr.forEach(function(item, iundex, array) {
+			array.forEach(function(deep_item, deep_index) {
+				if(deep_item == item) {
+					count++
+				}
+				if(deep_index == array.length - 1) {
+					transform.push({item: item, count: count});
+					count = 0;
+				}
+			})
+		})
+
+		transform = transform.map(function(item) {
+			return item.item + "_" + item.count
+		})
+
+		transform = transform.filter(function(item, pos) {
+			return transform.indexOf(item) == pos
+		})
+
+		transform = transform.map(function(item) {
+			var item = item.split("_");
+			return {item: item[0], count: +item[1]}
+		})
+
+		transform = transform.sort(function(a,b) {
+			return a.count-b.count
+		})
+
+		return transform
+	}
+
+	console.log(find(words))
+</script>

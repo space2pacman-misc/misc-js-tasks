@@ -1,0 +1,31 @@
+<script>
+	/*
+	try {
+		alert(1);
+		test
+		alert(2)
+	} catch(e) {
+		console.log(e.name + ":" + e.message + "\n" + e.stack);
+		alert(3)
+	}
+	*/
+
+	var data = "Has error";
+
+	try {
+		var user = JSON.parse(data);
+	} catch(e) {
+		console.log(e) // SyntaxError: Unexpected token H in JSON at position 0
+	}
+
+	var data = '{ "age": 30 }';
+
+	try {
+		var user = JSON.parse(data);
+		if(!user.name) {
+			throw SyntaxError("Отсутствует свойство Name")
+		}
+	} catch(e) {
+		console.log(e)
+	}
+</script>

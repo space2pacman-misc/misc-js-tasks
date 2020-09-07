@@ -1,0 +1,38 @@
+<script>
+	var Person = {
+		constructor: function(name, age, gender) {
+			this.name = name;
+			this.age = age;
+			this.gender = gender;
+			return this;
+		},
+		greeting: function(text) {
+			return this.name + ": " + text;
+		}
+	}
+
+	var user01 = Object.create(Person).constructor("Alex", 20, "male");
+
+	console.log(user01)
+
+	console.log(Person.isPrototypeOf(user01))
+
+	var WebDeveloper = Object.create(Person);
+	
+	WebDeveloper.constructor = function(name, age, gender, skills) {
+		Person.constructor.apply(this, arguments)
+		this.skills = skills || [];
+		return this;
+	}
+
+	WebDeveloper.develop = function() {
+		console.log("Working...");
+	}
+
+	var developer = Object.create(WebDeveloper).constructor("Bob", 30, "male", ["HTML", "CSS", "JS"])
+
+	console.log(developer)
+
+	developer.develop();
+
+</script>

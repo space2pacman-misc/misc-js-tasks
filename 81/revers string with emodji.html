@@ -1,0 +1,29 @@
+<script>
+	function reverseStr(str) {
+		str = str.split("");
+		str = str.map((w,i, word)=>{
+			var emodjiCode = 50000;
+			var wordCode = w.charCodeAt();
+
+			if(wordCode >= emodjiCode) {
+				if(word[i].charCodeAt() >= emodjiCode && word[i-1].charCodeAt() >= emodjiCode) {
+					return null;
+				} else {
+					return word[i]+word[i+1];
+				}
+			} else { 
+				return w;
+			} 
+		})
+
+		str.splice(str.indexOf(null), 1);
+		
+		return str.reverse().join("");
+	}
+	
+	console.log(reverseStr("Hello 👍"));
+
+	var reverseStrShort = str => [...str].reverse().join("");
+
+	console.log(reverseStrShort("Hello 👍"))
+</script>

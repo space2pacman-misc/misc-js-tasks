@@ -1,0 +1,21 @@
+<script>
+	function instanceOf(instance, constructor) {
+		return instance.constructor.name === constructor.name
+	}
+
+	function Test() {
+		this.test = "test";
+	}
+
+	function Fruits() {
+		this.fruits = "apple";
+	}
+
+	var test = new Test();
+	var apple = new Fruits();
+
+	console.log(instanceOf(test, Test)); // true
+	console.log(instanceOf(test, Fruits)); // false
+	console.log(instanceOf(apple, Fruits)); // true
+	console.log(instanceOf(apple, Test)); // false
+</script>

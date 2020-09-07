@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Print word</title>
+</head>
+<body>
+
+<div class="js-print">Hello world</div>
+
+<script>
+	var el = document.querySelector(".js-print");
+	//var word = el.innerHTML;
+
+	var option = {
+		element: el,
+		word: el.innerHTML,
+		timer: 1000
+	}
+
+	function printWord() {
+		var element = this.element;
+		var text = this.word.split("");
+		var count = 0;
+
+		element.innerHTML = "";
+		var i = setInterval(function() {
+			if (text.length == count) return
+
+			element.innerHTML += text[count];
+			count++;
+		}, this.timer)
+	}
+
+	printWord.call(option);
+
+</script>
+
+</body>
+</html>

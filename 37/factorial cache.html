@@ -1,0 +1,17 @@
+<script>
+	function cache(f) {
+		var cache = {};
+
+		return function(n) {
+			var key = "n_" + n;
+			//console.log(cache)
+			return cache[key] = f.call(this, n);
+		}
+	}
+
+	var factorial = cache(function(n) {
+		return n < 1 ? 1 : n * factorial(n-1);
+	})
+
+	console.log(factorial(5))
+</script>

@@ -1,0 +1,34 @@
+<script>
+	var names = ["Тихон","Петр","Мария","Екатерина","Николай","София"];
+	
+	function Human(name, age, height) {
+		this.name = name;
+		this.age = age;
+		this.height = height;
+	}
+
+	function rand(n, m) {
+		return Math.round(Math.random()*(m-n)+n);
+	}
+
+	function makeHuman(n) {
+		var humans = [];
+
+		for(var i = 0; i < n; i++) {
+			humans[i] = new Human(names[rand(0, names.length-1)], rand(18, 60), rand(140, 200))
+		}
+
+		return humans
+	}
+
+	console.log(makeHuman(10))
+	console.log(makeHuman(10).sort(mysort("age")))
+	console.log(makeHuman(10).sort(mysort("height")))
+
+	// sort
+	function mysort(param) {
+		return function(obj1, obj2) {
+			return obj1[param] - obj2[param]
+		}
+	}
+</script>

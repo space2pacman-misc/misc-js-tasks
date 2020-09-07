@@ -1,0 +1,12 @@
+<script>
+	var o = {x:1};
+
+	function copy() {
+		for(item in this) {
+			console.log(item, this[item])
+		}
+	}
+
+	//copy()
+	copy.call(o)
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<div class="apple">Apple</div>
+<a href="http://yandex.ru" class="link">link</a>
+
+<script>
+	var apple = document.querySelector(".apple");
+	var link = document.querySelector(".link");
+
+	apple.addEventListener("click", function() {
+		console.log("addEventListener")
+	})
+
+	apple.onclick = function() {
+		console.log("onclick")
+	}
+
+	link.onclick = function() {
+		return false;
+	}
+
+	link.addEventListener("click", function(e) {
+		console.log("link");
+		e.returnValue = false;
+		e.preventDefault();
+	})
+
+	link.addEventListener("load", function() {
+		console.log("link load")
+	})
+</script>
+
+</body>
+</html>
