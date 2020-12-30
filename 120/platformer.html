@@ -83,7 +83,6 @@
 
 			ctx.fillStyle = "rgb(100, 255, 100)";
 			ctx.fillRect(pX * 20, pY * 20, 20, 20);
-			
 
 			player.y++;
 			
@@ -99,7 +98,6 @@
 				if((player.x + 20) >= (pX * 20) && player.y + 20 > pY * 20 && player.direction === 1) {
 					player.x--;
 				}
-
 			}
 
 			if (map[pY][pX] === 0 && (map[pY][pX - 1] === 1 || map[pY][pX + 1] === 1)) {
