@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Raycasting</title>
+</head>
+<body>
+	<style>
+		#canvas {
+			border: 1px solid black;
+		}
+	</style>
+	<canvas id="canvas" width="400" height="300"></canvas>
+
+	<script>
+		let canvas = document.querySelector("#canvas");
+		let ctx = canvas.getContext("2d");
+		let x = 10;
+		let y = 10;
+		let map = [
+			[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+			[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+		]
+		let player = {
+			x: 200,
+			y: 120,
+			w: 20,
+			h: 20,
+			direction: 1
+		}
+
+		function renderMap() {
+			for(let i = 0; i < map.length; i++) {
+				for(let j = 0; j < map[i].length; j++) {
+					if(map[i][j] === 1) {
+						ctx.fillStyle = "rgb(200, 200, 200)";
+						ctx.fillRect(j * 20, i * 20, 20, 20);
+					}
+				}
+			}
+		}
+
+		ctx.fillStyle = "rgb(255,100,255)";
+		ctx.fillRect(player.x, player.y, player.w, player.h);
+
+		document.addEventListener("keydown", e => {
+			switch(e.keyCode) {
+				case 37:
+					player.x--;
+					player.direction = -1;
+
+					break;
+				case 39:
+					player.x++;
+					player.direction = 1;
+
+					break;
+				case 38:
+					player.y -= 50;
+			}
+		})
+
+		setInterval(() => {
+			ctx.clearRect(0, 0, 400, 300);
+			renderMap();
+
+			let pX = (player.direction === 1 ? Math.ceil(player.x / 20) : Math.floor(player.x / 20));
+			let pY = Math.floor((player.y + player.h) / 20);
+
+			ctx.fillStyle = "rgb(100, 255, 100)";
+			ctx.fillRect(pX * 20, pY * 20, 20, 20);
+			
+
+			player.y++;
+			
+			if(map[pY][pX] === 1) {
+				if(player.y + 20 >= pY * 20) {
+					player.y--;
+				}
+
+				if(player.x <= ((pX * 20) + 20) && player.y + 20 > pY * 20 && player.direction === -1) {
+					player.x++;
+				}
+
+				if((player.x + 20) >= (pX * 20) && player.y + 20 > pY * 20 && player.direction === 1) {
+					player.x--;
+				}
+
+			}
+
+			if (map[pY][pX] === 0 && (map[pY][pX - 1] === 1 || map[pY][pX + 1] === 1)) {
+				if((map[pY][pX + 1] === 1 && player.x >= pX * 20) || (map[pY][pX - 1] === 1 && player.x <= pX * 20)) {
+					player.y--;
+				}
+
+				if(player.x === pX * 20) {
+					player.y++;
+				}
+			}
+
+			ctx.fillStyle = "rgb(255,100,255)";
+			ctx.fillRect(player.x, player.y, player.w, player.h);
+		}, 10)
+	</script>
+</body>
+</html>
